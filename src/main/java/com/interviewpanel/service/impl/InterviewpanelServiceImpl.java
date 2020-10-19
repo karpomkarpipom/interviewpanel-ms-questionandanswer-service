@@ -14,7 +14,7 @@ public class InterviewpanelServiceImpl implements InterviewpanelService{
 
 	@Autowired
 	InterviewRepository interviewRepository;
-
+	
 	@Override
 	public InterviewQARequest addInterviewQA(InterviewQARequest interviewQARequest) {
 		// TODO Auto-generated method stub
