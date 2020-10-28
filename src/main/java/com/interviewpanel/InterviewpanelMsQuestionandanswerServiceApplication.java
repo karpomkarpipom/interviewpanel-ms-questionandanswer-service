@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 public class InterviewpanelMsQuestionandanswerServiceApplication {
 
 	public static void main(String[] args) {
-		
+		System.out.println("--------------><-----------");
 		SpringApplication.run(InterviewpanelMsQuestionandanswerServiceApplication.class, args);
 	}
 
