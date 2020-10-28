@@ -40,7 +40,7 @@ public class InterviewpanelController {
 	//@RequestMapping(value = "/employees", method = RequestMethod.GET, produces = "application/json")
 	@GetMapping("v1/qalist")
 	public List<InterviewQARequest> firstPage() {
-		System.out.println("--------get list interviewQA------>");
+		System.out.println("--------get list interviewQA------>>");
 		return interviewpanelService.retrieveAllQAs();
 	}
 
