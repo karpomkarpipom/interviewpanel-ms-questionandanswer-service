@@ -1,13 +1,6 @@
 spring:
   application:
     name: interviewpanel-ms-questionandanswer-service
-    
-management:
-  endpoints:
-    web: 
-      exposure:
-        include: '*'
-  security:
-    enabled: false
+
     
  

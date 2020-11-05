@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.interviewpanel.bean.Employee;
 import com.interviewpanel.bean.InterviewQARequest;
+import com.interviewpanel.notification.TriggerNotification;
 //import com.interviewpanelsecurity.bean.User;
 import com.interviewpanel.service.InterviewpanelService;
+ 
 
 //@CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -27,6 +29,8 @@ public class InterviewpanelController {
 	@Autowired
 	InterviewpanelService interviewpanelService;
 	
+	@Autowired
+	private TriggerNotification triggerNotification;
 	
 //	@GetMapping(produces = "application/json")
 //	@RequestMapping({ "/validateLogin" })
@@ -62,6 +66,8 @@ public class InterviewpanelController {
 		System.out.println("------>Adding IQA");
 		//interviewQARequestList.add(interviewQARequest);
 		interviewpanelService.addInterviewQA(interviewQARequest);
+		//Trigger notification to all users -Call Kafka Messaging streams
+		triggerNotification.send(interviewQARequest.getQuestionPostedBy());
 		System.out.println(interviewQARequestList);
 		return interviewQARequest;
 	}

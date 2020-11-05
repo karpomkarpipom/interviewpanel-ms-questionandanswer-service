@@ -15,5 +15,6 @@ public class InterviewQARequest {
 	private String employerName;
 	private List<QuestionAnswers> questionAnswers;
 	private String interviewDate;
+	private String experiencelevel;
  
 }

@@ -1,6 +1,22 @@
 spring:
   application:
     name: interviewpanel-ms-questionandanswer-service
-
+  cloud:
+     stream:
+       kafka:
+         binder:
+           brokers:
+           - http://18.188.152.98:9092
+       bindings:
+         output:
+           destination: NEW_QUESTIONS_POSTED_TOPIC
 server:
   port: 8082
+
+management:
+  endpoints:
+    web: 
+      exposure:
+        include: '*'
+  security:
+    enabled: false
