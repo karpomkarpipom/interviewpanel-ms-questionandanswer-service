@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,7 +63,7 @@ public class InterviewpanelController {
 	}
 
 	@PostMapping("v1/addQA")
-	public InterviewQARequest create(@RequestBody InterviewQARequest interviewQARequest) {
+	public InterviewQARequest createQA(@RequestBody InterviewQARequest interviewQARequest) {
 		System.out.println("------>Adding IQA");
 		//interviewQARequestList.add(interviewQARequest);
 		interviewpanelService.addInterviewQA(interviewQARequest);
@@ -70,6 +71,28 @@ public class InterviewpanelController {
 		triggerNotification.send(interviewQARequest.getQuestionPostedBy());
 		System.out.println(interviewQARequestList);
 		return interviewQARequest;
+	}
+
+	@PutMapping("v1/modify")
+	public InterviewQARequest modifyAnswer(@RequestBody InterviewQARequest interviewQARequest) {
+		System.out.println("------>Update InterviewAnswer");
+		//interviewQARequestList.add(interviewQARequest);
+		interviewpanelService.updateInterviewQA(interviewQARequest);
+		//Trigger notification to all users -Call Kafka Messaging streams
+		//triggerNotification.send(interviewQARequest.getQuestionPostedBy());
+		System.out.println(interviewQARequestList);
+		return interviewQARequest;
+	}
+	
+	@DeleteMapping("v1/delete/{_id}")
+	public String deleteQA(@PathVariable String _id) {
+		System.out.println("------>Delete InterviewQuestionAnswer");
+		//interviewQARequestList.add(interviewQARequest);
+		interviewpanelService.deleteInterviewQA(_id);
+		//Trigger notification to all users -Call Kafka Messaging streams
+		//triggerNotification.send(interviewQARequest.getQuestionPostedBy());
+		//System.out.println(interviewQARequestList);
+		return "Successfully removed";
 	}
 
 	/*
